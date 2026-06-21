@@ -28,9 +28,9 @@ COPY --from=isolate /usr/local/etc/isolate /usr/local/etc/isolate
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
 WORKDIR /piston_api
-COPY ["package.json", "package-lock.json", "./"]
+COPY ["api/package.json", "api/package-lock.json", "./"]
 RUN npm install
-COPY ./src ./src
+COPY ./api/src ./src
 
 CMD ["/piston_api/src/docker-entrypoint.sh"]
 EXPOSE 2000/tcp
